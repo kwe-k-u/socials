@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socials/ui/authentication_page/authentication_page.dart';
 import 'package:socials/ui/homescreen/homescreen.dart';
 
 void main() {
@@ -6,11 +7,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
+      home: AuthenticationScreen(),
     );
   }
 }
