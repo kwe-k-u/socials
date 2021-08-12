@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:socials/ui/authentication_page/authentication_page.dart';
 import 'package:socials/ui/settings_page/settings_page.dart';
-import 'package:socials/utils/app_state.dart';
-import 'package:socials/utils/authentication.dart';
+import 'package:socials/utils/models/app_state.dart';
+import 'package:socials/utils/helpers/authentication.dart';
 import 'package:provider/provider.dart';
 
 

@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+.fvm/
+.gradle/
 
 # IntelliJ related
 *.iml

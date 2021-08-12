@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:socials/ui/authentication_page/widgets/custom_rounded_button.dart';
 import 'package:socials/ui/homescreen/homescreen.dart';
-import 'package:socials/utils/app_state.dart';
-import 'package:socials/utils/authentication.dart';
+import 'package:socials/utils/models/app_state.dart';
+import 'package:socials/utils/helpers/authentication.dart';
 import 'package:provider/provider.dart';
 
 
@@ -18,7 +18,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   final TextEditingController signinPassword = new TextEditingController();
   final TextEditingController signupEmail = new TextEditingController();
   final TextEditingController signupPassword = new TextEditingController();
-  final TextEditingController signupConfrimPassword = new TextEditingController();
+  final TextEditingController signupConfirmPassword = new TextEditingController();
 
 
   @override
@@ -79,7 +79,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   ),
                 ),
                 TextFormField(
-                  controller: signupConfrimPassword,
+                  controller: signupConfirmPassword,
                   obscureText: true,
                   decoration: InputDecoration(
                       labelText: "Confirm Password"
@@ -109,5 +109,15 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             )
         )
     );
+  }
+
+  @override
+  void dispose() {
+    signupPassword.dispose();
+    signupEmail.dispose();
+    signupConfirmPassword.dispose();
+    signinPassword.dispose();
+    signinEmail.dispose();
+    super.dispose();
   }
 }
