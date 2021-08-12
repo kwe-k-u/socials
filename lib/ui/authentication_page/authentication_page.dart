@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:socials/ui/authentication_page/widgets/custom_rounded_button.dart';
 import 'package:socials/ui/homescreen/homescreen.dart';
+import 'package:socials/utils/app_state.dart';
+import 'package:socials/utils/authentication.dart';
+import 'package:provider/provider.dart';
+
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({Key? key}) : super(key: key);
@@ -10,30 +14,47 @@ class AuthenticationScreen extends StatefulWidget {
 }
 
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
+  final TextEditingController signinEmail = new TextEditingController();
+  final TextEditingController signinPassword = new TextEditingController();
+  final TextEditingController signupEmail = new TextEditingController();
+  final TextEditingController signupPassword = new TextEditingController();
+  final TextEditingController signupConfrimPassword = new TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
               children: [
 
                 Text("Sign In"),
                 TextFormField(
+                  controller: signinEmail,
                   decoration: InputDecoration(
                     labelText: "Email"
                   ),
                 ),
                 TextFormField(
+                  controller: signinPassword,
+                  obscureText: true,
                   decoration: InputDecoration(
-                      labelText: "Email"
+                      labelText: "Password"
                   ),
                 ),
 
                 CustomRoundedButton(
-                    text: "Sign Up",
-                    onPressed: (){
+                    text: "Sign In",
+                    onPressed: () async {
+                      context.read<AppState>().user = await firebaseLogInWithEmail(
+                          context: context,
+                          email: signinEmail.text,
+                          password: signinPassword.text
+                      );
+
+
+                      if (context.read<AppState>().user != null)
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(
                               builder: (context)=> HomeScreen()
@@ -45,21 +66,21 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 Text("Or"),
                 Text("Sign up"),
                 TextFormField(
-                  decoration: InputDecoration(
-                      labelText: "Username"
-                  ),
-                ),
-                TextFormField(
+                  controller: signupEmail,
                   decoration: InputDecoration(
                       labelText: "Email"
                   ),
                 ),
                 TextFormField(
+                  controller: signupPassword,
+                  obscureText: true,
                   decoration: InputDecoration(
                       labelText: "Password"
                   ),
                 ),
                 TextFormField(
+                  controller: signupConfrimPassword,
+                  obscureText: true,
                   decoration: InputDecoration(
                       labelText: "Confirm Password"
                   ),
@@ -67,7 +88,16 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
 
                 CustomRoundedButton(
                   text: "Sign Up",
-                  onPressed: (){
+                  onPressed: () async {
+
+
+                    context.read<AppState>().user = await firebaseSignUpWithEmail(
+                        email: signupEmail.text,
+                        password: signupPassword.text,
+                        context: context
+                    );
+
+                    if (context.read<AppState>().user != null)
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(
                             builder: (context)=> HomeScreen()

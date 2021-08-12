@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:socials/ui/authentication_page/authentication_page.dart';
 import 'package:socials/ui/settings_page/settings_page.dart';
+import 'package:socials/utils/app_state.dart';
+import 'package:socials/utils/authentication.dart';
+import 'package:provider/provider.dart';
 
 
 class CustomDrawer extends StatelessWidget {
@@ -40,6 +44,15 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             title: Text("Log out"),
             onTap: (){
+
+              firebaseSignOut().then((value) {
+                context.read<AppState>().user = null;
+                Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=> AuthenticationScreen()
+                    )
+                );
+              });
 
             },
           ),
