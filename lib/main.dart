@@ -2,10 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socials/ui/authentication_page/authentication_page.dart';
-import 'package:socials/utils/app_state.dart';
+import 'package:socials/utils/models/app_state.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+      ChangeNotifierProvider<AppState>(
+    create: (context) => AppState(),
+    child: MyApp(),
+        // builder: (context, child) => child!,
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,10 +21,7 @@ class MyApp extends StatelessWidget {
       builder: (context,snapshot){
         if (snapshot.connectionState == ConnectionState.done)
           return MaterialApp(
-            home: ChangeNotifierProvider(
-              create: (context) => AppState(),
-              child: AuthenticationScreen(),
-            ),
+            home: AuthenticationScreen(),
           );
 
         return Container();
@@ -27,4 +29,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 

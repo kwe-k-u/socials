@@ -4,6 +4,10 @@ import 'package:socials/ui/chat_list_screen/chat_list_screen.dart';
 import 'package:socials/ui/homescreen/widgets/bottom_navigation_widget.dart';
 import 'package:socials/ui/homescreen/widgets/custom_drawer.dart';
 import 'package:socials/ui/stock_screen/stock_screen.dart';
+import 'package:socials/utils/helpers/database.dart';
+import 'package:socials/utils/models/app_state.dart';
+import 'package:socials/utils/models/product.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: (){
+          onPressed: () {
 
           },
         ),

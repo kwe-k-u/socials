@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:socials/utils/helper.dart';
+import 'package:socials/utils/helpers/helper.dart';
 
 
 
