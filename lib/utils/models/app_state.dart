@@ -19,6 +19,8 @@ class AppState extends ChangeNotifier{
   // }
 
 
+
+
    set user(User? user) {
     this._user = user;
     if (user != null)
@@ -31,9 +33,13 @@ class AppState extends ChangeNotifier{
   }
 
 
-  // void addKey({required PlatformEnum platform, required String key}){
-  //    this.keys!.keys[platform.toString().split(".")[1]] = key;
-  //    updatePlatforms(id: user!.uid, keys: keys!);
-  // }
+  void addKey({
+    required PlatformEnum platform,
+    required Map<String, String> keyMap}){
+     if (this.keys == null)
+       this.keys = PlatformKeys(null);
+     this.keys!.keys[platform] = keyMap;
+     updatePlatforms(id: user!.uid, keys: keys!);
+  }
 
 }

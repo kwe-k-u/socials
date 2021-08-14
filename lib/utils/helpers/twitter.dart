@@ -5,7 +5,7 @@ import 'package:twitter_login/twitter_login.dart';
 class Twitter{
   
   
-  Future<Map<String,String>?> authenticate() async{
+  Future<Map<String,dynamic>> authenticate() async{
 
     final twitterLogin = TwitterLogin(
       // Consumer API keys
@@ -18,27 +18,22 @@ class Twitter{
       redirectURI: twitterRedirectUri,
     );
     final authResult = await twitterLogin.login();
-
+    Map<String, dynamic> response = {
+      "status" : authResult.status
+    };
     switch (authResult.status) {
       case TwitterLoginStatus.loggedIn:
         print("success");
         // success
-        return {
-          "authToken" : authResult.authToken!,
-          "authTokenSecret" : authResult.authTokenSecret!,
-        };
+        response["authToken"] = authResult.authToken!;
+        response["authTokenSecret"] = authResult.authTokenSecret!;
+        break;
 
       case null:
-        break;
       case TwitterLoginStatus.cancelledByUser:
-      // cancel
-
-        print("cancelled");
-        break;
       case TwitterLoginStatus.error:
-      // error
-        print("error");
-        break;
     }
+
+    return response;
   }
 }

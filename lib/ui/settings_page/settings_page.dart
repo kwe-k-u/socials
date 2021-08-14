@@ -20,21 +20,22 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           children: [
             Expanded(
-                child:
-            ListView(
+                child: ListView(
               children: [
-              ListTile(
-                leading: const Icon(Icons.add),
-                title: const Text("Add another account"),
-                onTap: (){
-                  showDialog(
-                      context: context,
-                      builder: (context) => AddAccountPopup()
-                  );
-                },
-              ),
-
-            ],))
+                Text("Linked Accounts"),
+                ListTile(
+                  leading: const Icon(Icons.add),
+                  title: const Text("Add another account"),
+                  onTap: (){
+                    showDialog(
+                        context: context,
+                        builder: (context) => AddAccountPopup()
+                    );
+                    },
+                ),
+              ],
+                )
+            )
           ],
         )
         )
