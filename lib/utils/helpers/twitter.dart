@@ -1,20 +1,21 @@
 
+import 'package:socials/utils/APIKEYS.dart';
 import 'package:twitter_login/twitter_login.dart';
 
 class Twitter{
   
   
-  Future<void> authenticate() async{
+  Future<Map<String,String>?> authenticate() async{
 
     final twitterLogin = TwitterLogin(
       // Consumer API keys
-      apiKey: '',
+      apiKey: twitterApiKey,
       // Consumer API Secret keys
-      apiSecretKey: '',
+      apiSecretKey: twitterApiSecretKey,
       // Registered Callback URLs in TwitterApp
       // Android is a deeplink
       // iOS is a URLScheme
-      redirectURI: '',
+      redirectURI: twitterRedirectUri,
     );
     final authResult = await twitterLogin.login();
 
@@ -22,9 +23,12 @@ class Twitter{
       case TwitterLoginStatus.loggedIn:
         print("success");
         // success
-        break;
+        return {
+          "authToken" : authResult.authToken!,
+          "authTokenSecret" : authResult.authTokenSecret!,
+        };
+
       case null:
-        print("null");
         break;
       case TwitterLoginStatus.cancelledByUser:
       // cancel

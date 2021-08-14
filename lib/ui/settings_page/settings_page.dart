@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socials/ui/settings_page/widgets/add_account_popup.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -18,22 +19,18 @@ class _SettingsPageState extends State<SettingsPage> {
         body: Container(
         child: Column(
           children: [
-            Expanded(child:
+            Expanded(
+                child:
             ListView(
               children: [
               ListTile(
-                leading: Icon(Icons.account_balance),
-                title: Text("Facebook"),
-                subtitle: Text("username"),
-              ),
-              ListTile(
-                leading: Icon(Icons.add),
-                title: Text("Add another account"),
+                leading: const Icon(Icons.add),
+                title: const Text("Add another account"),
                 onTap: (){
-                  // Navigator.push(context,
-                      // MaterialPageRoute(builder: (context)=> TwitterPage()
-                      // )
-                  // );
+                  showDialog(
+                      context: context,
+                      builder: (context) => AddAccountPopup()
+                  );
                 },
               ),
 

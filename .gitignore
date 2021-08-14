@@ -10,6 +10,7 @@
 .svn/
 .fvm/
 .gradle/
+lib/utils/APIKEYS.dart
 
 # IntelliJ related
 *.iml
