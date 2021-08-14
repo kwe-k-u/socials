@@ -6,17 +6,17 @@ import 'package:socials/utils/models/platform_keys.dart';
 
 class AppState extends ChangeNotifier{
   User? _user;
-  PlatformKeys? _keys;
+  PlatformKeys? keys;
 
 
   User? get user => this._user;
-  PlatformKeys? get keys => this._keys;
+  // PlatformKeys? get keys => this._keys;
 
 
-  set keys(PlatformKeys? key){
-    this._keys = key;
-    notifyListeners();
-  }
+  // set keys(PlatformKeys? key){
+  //   this._keys = key;
+  //   notifyListeners();
+  // }
 
 
    set user(User? user) {
@@ -31,9 +31,9 @@ class AppState extends ChangeNotifier{
   }
 
 
-  void addKey({required PlatformEnum platform, required String key}){
-     this.keys!.keys[platform.toString().split(".")[1]] = key;
-     updatePlatforms(id: user!.uid, keys: keys!);
-  }
+  // void addKey({required PlatformEnum platform, required String key}){
+  //    this.keys!.keys[platform.toString().split(".")[1]] = key;
+  //    updatePlatforms(id: user!.uid, keys: keys!);
+  // }
 
 }
