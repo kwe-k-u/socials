@@ -29,6 +29,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 leading: Icon(Icons.add),
                 title: Text("Add another account"),
+                onTap: (){
+                  // Navigator.push(context,
+                      // MaterialPageRoute(builder: (context)=> TwitterPage()
+                      // )
+                  // );
+                },
               ),
 
             ],))
