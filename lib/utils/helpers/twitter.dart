@@ -6,7 +6,7 @@ class Twitter{
   
   
   Future<Map<String,dynamic>> authenticate() async{
-
+//todo implement
     final twitterLogin = TwitterLogin(
       // Consumer API keys
       apiKey: twitterApiKey,
@@ -27,6 +27,7 @@ class Twitter{
         // success
         response["authToken"] = authResult.authToken!;
         response["authTokenSecret"] = authResult.authTokenSecret!;
+        print(response.toString());
         break;
 
       case null:

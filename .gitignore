@@ -11,7 +11,8 @@
 .fvm/
 .gradle/
 lib/utils/APIKEYS.dart
-
+*.bin
+*.lock
 # IntelliJ related
 *.iml
 *.ipr

@@ -31,6 +31,7 @@ dependencies:
   firebase_core: ^1.4.0
   firebase_auth: ^3.0.1
   firebase_database: ^7.1.2
+  grouped_list: ^4.1.0
   ionicons: ^0.1.2
   provider: ^5.0.0
   twitter_login: ^4.0.1
