@@ -2,14 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:socials/utils/enums/platform_enum.dart';
 import 'package:socials/utils/helpers/database.dart';
+import 'package:socials/utils/models/twitter/twitter.dart';
 import 'package:socials/utils/models/platform_keys.dart';
 
 class AppState extends ChangeNotifier{
   User? _user;
   PlatformKeys? keys;
-
-
   User? get user => this._user;
+  Twitter? twitter;
   // PlatformKeys? get keys => this._keys;
 
 

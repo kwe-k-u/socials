@@ -4,6 +4,7 @@ import 'package:socials/ui/homescreen/homescreen.dart';
 import 'package:socials/utils/models/app_state.dart';
 import 'package:socials/utils/helpers/authentication.dart';
 import 'package:provider/provider.dart';
+import 'package:socials/utils/models/twitter/twitter.dart';
 
 
 class AuthenticationScreen extends StatefulWidget {
@@ -20,6 +21,14 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   final TextEditingController signupPassword = new TextEditingController();
   final TextEditingController signupConfirmPassword = new TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+
+    Twitter twitter = new Twitter();
+    twitter.login();
+    twitter.getMessages();
+  }
 
   @override
   Widget build(BuildContext context) {

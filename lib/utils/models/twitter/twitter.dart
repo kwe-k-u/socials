@@ -1,10 +1,30 @@
 
+import 'dart:convert';
+
 import 'package:socials/utils/APIKEYS.dart';
+import 'package:socials/utils/models/api_abstract.dart';
+import 'package:socials/utils/models/twitter/twitter_dm.dart';
+import 'package:twitter_api/utlils/twitter_api.dart';
 import 'package:twitter_login/twitter_login.dart';
 
-class Twitter{
-  
-  
+class Twitter extends ApiAbstract{
+  TwitterApi? _api;
+  String? _screenName;
+
+
+  @override
+  void login() async{
+
+    _api = TwitterApi(
+      token: twitterAccessToken,
+      consumerKey: twitterApiKey,
+      consumerSecret: twitterApiSecretKey,
+      tokenSecret: twitterAccessTokenSecret,);
+
+  }
+
+
+
   Future<Map<String,dynamic>> authenticate() async{
 //todo implement
     final twitterLogin = TwitterLogin(
@@ -27,7 +47,6 @@ class Twitter{
         // success
         response["authToken"] = authResult.authToken!;
         response["authTokenSecret"] = authResult.authTokenSecret!;
-        print(response.toString());
         break;
 
       case null:
@@ -37,4 +56,29 @@ class Twitter{
 
     return response;
   }
+
+  @override
+  Future<dynamic> getFriends() async{
+    return await this._api!.getFollowers();
+  }
+
+  @override
+  Future<List<TwitterDM>> getMessages() async{
+    List<TwitterDM>  messages = [];
+    _api!.getMessages().then((value) {
+      value.forEach((element) {
+        messages.add(TwitterDM.fromJson(element));
+      });
+    });
+
+    return messages;
+  }
+
+  @override
+  void sendMessage(String message, identifier) {
+    // TODO: implement sendMessage
+  }
+
+
+
 }

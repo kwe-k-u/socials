@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socials/utils/enums/platform_enum.dart';
 import 'package:socials/utils/helpers/helper.dart';
-import 'package:socials/utils/helpers/twitter.dart';
+import 'package:socials/utils/models/twitter/twitter.dart';
 import 'package:socials/utils/models/app_state.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:provider/provider.dart';
