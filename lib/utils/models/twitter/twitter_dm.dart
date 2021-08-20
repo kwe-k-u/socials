@@ -1,14 +1,16 @@
 
-class TwitterDM{
+import 'package:socials/utils/models/general_message_models/message_abstract.dart';
+
+class TwitterDM extends MessageAbstract{
   String type;
   String id;
-  DateTime createdTimestamp;
+  DateTime dateSent;
   Map<String, dynamic> messageCreate;
 
   TwitterDM({
     required this.type,
     required this.id,
-    required this.createdTimestamp,
+    required this.dateSent,
     required this.messageCreate
 
 });
@@ -16,7 +18,7 @@ class TwitterDM{
   String get text => messageCreate["message_data"]["text"];
   String get senderId => messageCreate["sender_id"];
   String get sourceAppId => messageCreate["source_app_id"];
-  String get recipientId => messageCreate["recipient_id"];
+  String get recipientId => messageCreate["target"]["recipient_id"];
   List<String> get mentions => messageCreate["message_data"]["entities"]["user_mentions"];
   List<String> get symbols => messageCreate["message_data"]["entities"]["symbols"];
   List<String> get hashtags => messageCreate["message_data"]["entities"]["hashtags"];
@@ -25,13 +27,12 @@ class TwitterDM{
 
 
   factory TwitterDM.fromJson(Map<String, dynamic> map){
-    print( DateTime.fromMillisecondsSinceEpoch(int.parse(map["created_timestamp"])).toString());
 
     return TwitterDM(
         type: map["type"],
         id: map["id"],
         messageCreate: map["message_create"],
-        createdTimestamp: DateTime.fromMillisecondsSinceEpoch(int.parse(map["created_timestamp"]))
+        dateSent: DateTime.fromMillisecondsSinceEpoch(int.parse(map["created_timestamp"]))
     );
   }
 

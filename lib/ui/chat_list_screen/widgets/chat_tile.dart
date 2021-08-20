@@ -1,29 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:socials/ui/chat_details_screen/chat_details_screen.dart';
+import 'package:socials/utils/enums/platform_enum.dart';
+import 'package:socials/utils/models/general_message_models/message_thread.dart';
 
 
 class ChatTile extends StatelessWidget {
-  final String username;
-  final String message;
-  final void Function() onTap;
+  final MessageThread thread;
 
   const ChatTile({
     Key? key,
-    required this.username,
-    required this.message,
-    required this.onTap
+    required this.thread
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        onTap: onTap,
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (context) => ChatDetailsScreen(thread: thread)
+              )
+          );
+        },
         leading: Hero(
           tag: "",
           child: Icon(Icons.account_balance),
         ),
-        title: _TitleWidget( username: username,),
-        subtitle: Text(message),
+        title: _TitleWidget(
+          tag: thread.tag,
+          username: thread.last.id,
+        ),//todo show the other person's name
+
+        subtitle: Text(
+          thread.last.text,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 3,
+        ),
+
         trailing: _DateWidget(),
       ),
     );
@@ -36,21 +51,37 @@ class ChatTile extends StatelessWidget {
 
 class _TitleWidget extends StatelessWidget {
   final String username;
+  final PlatformEnum tag;
 
-  const _TitleWidget({Key? key, required this.username}) : super(key: key);
+  const _TitleWidget({
+    Key? key,
+    required this.username,
+    required this.tag,
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(username),
-        _Label()
+        Text(username, overflow: TextOverflow.fade,),
+        _label()
       ],
     );
   }
 
-  Widget _Label(){
-    return Container(); //todo round tag
+  Widget _label(){
+    switch (this.tag){
+
+      case PlatformEnum.facebook:
+        return Icon(Ionicons.logo_facebook);
+      case PlatformEnum.snapchat:
+        return Icon(Ionicons.logo_snapchat);
+      case PlatformEnum.instagram:
+        return Icon(Ionicons.logo_instagram);
+      case PlatformEnum.twitter:
+        return Icon(Ionicons.logo_twitter);
+    }
   }
 
 

@@ -7,8 +7,8 @@ import 'package:socials/utils/models/app_state.dart';
 void main() {
   runApp(
       ChangeNotifierProvider<AppState>(
-    create: (context) => AppState(),
-    child: MyApp(),
+        create: (context) => AppState(),
+        child: MyApp(),
         // builder: (context, child) => child!,
   ));
 }

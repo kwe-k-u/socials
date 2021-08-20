@@ -27,8 +27,6 @@ class _StockScreenState extends State<StockScreen> {
 
           else if (snapshot.connectionState == ConnectionState.done && snapshot.data != null){
             List<Product> items = snapshot.data! as List<Product>;
-            print(items.length);
-            print(items);
 
             return ListView.builder(
               itemCount: items.length,

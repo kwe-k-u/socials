@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:socials/ui/chat_details_screen/widgets/chat_body_widget.dart';
 import 'package:socials/ui/chat_details_screen/widgets/chat_text_field.dart';
+import 'package:socials/utils/models/general_message_models/message_thread.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
-  const ChatDetailsScreen({Key? key}) : super(key: key);
+  final MessageThread thread;
+  const ChatDetailsScreen({
+    Key? key,
+    required this.thread
+  }) : super(key: key);
 
   @override
   _ChatDetailsScreenState createState() => _ChatDetailsScreenState();
@@ -39,7 +44,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                     children: <Widget>[
                       Text("Kwame Okran",style: TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),),
                       SizedBox(height: 6,),
-                      Text("Facebook",style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
+                      Text(widget.thread.tag.toString().split(".")[1],style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
                     ],
                   ),
                 ),
@@ -60,7 +65,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 color: Colors.blue,
                 height: size.height * 0.75,
-                child: ChatBodyWidget(),
+                child: ChatBodyWidget(
+                  messageThread: widget.thread,
+                ),
               ),
               Row(
                 children: [

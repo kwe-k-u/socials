@@ -1,5 +1,4 @@
 
-import 'dart:convert';
 
 import 'package:socials/utils/APIKEYS.dart';
 import 'package:socials/utils/models/api_abstract.dart';
@@ -9,7 +8,7 @@ import 'package:twitter_login/twitter_login.dart';
 
 class Twitter extends ApiAbstract{
   TwitterApi? _api;
-  String? _screenName;
+  String? userId;
 
 
   @override
@@ -65,7 +64,7 @@ class Twitter extends ApiAbstract{
   @override
   Future<List<TwitterDM>> getMessages() async{
     List<TwitterDM>  messages = [];
-    _api!.getMessages().then((value) {
+    await _api!.getMessages().then((value) {
       value.forEach((element) {
         messages.add(TwitterDM.fromJson(element));
       });

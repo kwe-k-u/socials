@@ -1,8 +1,14 @@
 import "package:flutter/material.dart";
+import 'package:grouped_list/grouped_list.dart';
+import 'package:socials/utils/models/general_message_models/message_abstract.dart';
+import 'package:socials/utils/models/general_message_models/message_thread.dart';
 
 
 class ChatBodyWidget extends StatefulWidget {
-  const ChatBodyWidget({Key? key}) : super(key: key);
+  final MessageThread messageThread;
+  const ChatBodyWidget({Key? key,
+    required this.messageThread
+  }) : super(key: key);
 
   @override
   _ChatBodyWidgetState createState() => _ChatBodyWidgetState();
@@ -11,30 +17,44 @@ class ChatBodyWidget extends StatefulWidget {
 class _ChatBodyWidgetState extends State<ChatBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: BouncingScrollPhysics(),
-      itemBuilder: (context, index){
-        if (index %2 == 0){
-          return Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _ChatBubble(message: "Charle wusop", received: index %2 == 0),
-
-              ]
-          );
-        } else{
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-
-              _ChatBubble(message: "Everything Cool", received: index %2 == 0),
-        ]
-          );
-        }
+    return GroupedListView<MessageAbstract, DateTime>(
+      elements: widget.messageThread.getMessages(),
+      groupBy:(MessageAbstract element) => DateTime(
+          element.dateSent.year, element.dateSent.month,element.dateSent.day),
+      floatingHeader: true,
+      reverse: true,
+      groupHeaderBuilder: (message){
+        return Align(
+          alignment: Alignment.center,
+          child: Container(
+            margin: EdgeInsets.all(8),
+            padding: EdgeInsets.all(8),
+            color: Colors.amberAccent,
+            child: Text(message.dateSent.toString()),
+          ),
+        );
       },
+      itemBuilder: (context, MessageAbstract message){
+        Size size = MediaQuery.of(context).size;
+
+        return ConstrainedBox(
+            constraints: BoxConstraints(
+                maxWidth: size.width * 0.45,
+                minWidth: size.width * 0.2,
+                minHeight: size.height * 0.08
+            ),
+            child: _ChatBubble(message: message.text, received: false));
+      },
+      
+
     );
   }
 }
+
+
+
+
+
 
 
 
@@ -53,6 +73,7 @@ class _ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
         padding: EdgeInsets.all(12),
 
         decoration: BoxDecoration(

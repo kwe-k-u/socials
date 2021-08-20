@@ -29,13 +29,11 @@ Future<List<Product>> getProducts(String id) async{
   FirebaseDatabase database = FirebaseDatabase.instance;
   List<Product> products = [];
   await database.reference().child("$id/products").get().then((value) {
-    if (value != null){
       for (String _key in value.value.keys){
         Product prod =  Product.fromMap(Map<String,dynamic>.from(value.value[_key]));
         prod.id = _key;
         products.add(prod);
       }
-    }
   });
 
   return products;

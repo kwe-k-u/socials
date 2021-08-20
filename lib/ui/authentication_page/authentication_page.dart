@@ -25,9 +25,6 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   void initState() {
     super.initState();
 
-    Twitter twitter = new Twitter();
-    twitter.login();
-    twitter.getMessages();
   }
 
   @override
@@ -101,7 +98,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
 
 
                     context.read<AppState>().user = await firebaseSignUpWithEmail(
-                        email: signupEmail.text,
+                        email: signupEmail.text.trim().toLowerCase(),
                         password: signupPassword.text,
                         context: context
                     );
