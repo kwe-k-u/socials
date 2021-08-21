@@ -73,10 +73,10 @@ class AppState extends ChangeNotifier{
     if (user != null)
     getKeys(user.uid).then((value) {
       keys = new PlatformKeys(value);
-      keys!.keys.keys.forEach((element) async {
+      keys!.keys.forEach((key,value) async {
 
         //Setting up apis for each social media platform
-        switch (element){
+        switch (key){
 
           case PlatformEnum.facebook:
             // TODO: Handle this case.
@@ -85,12 +85,15 @@ class AppState extends ChangeNotifier{
             // TODO: Handle this case.
             break;
           case PlatformEnum.instagram:
-            // TODO: Handle this case.m
+            // TODO: Handle this case.
             break;
           case PlatformEnum.twitter:
             this.twitter = Twitter();
-            this.twitter!.login();
+            this.twitter!.login(value["access_token"]!, value["access_token_secret"]!);
             List<MessageAbstract> list = await this.twitter!.getMessages();
+
+            twitter!.userId = await twitter!.getUserId();
+
             this._messageList.addList(list, PlatformEnum.twitter);
             break;
         }

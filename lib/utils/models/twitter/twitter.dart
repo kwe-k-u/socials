@@ -12,13 +12,13 @@ class Twitter extends ApiAbstract{
 
 
   @override
-  void login() async{
+  void login(String consumerKey, String consumerSecret) async{
 
     _api = TwitterApi(
-      token: twitterAccessToken,
+      token: consumerKey,
+      tokenSecret: consumerSecret,
       consumerKey: twitterApiKey,
-      consumerSecret: twitterApiSecretKey,
-      tokenSecret: twitterAccessTokenSecret,);
+      consumerSecret: twitterApiSecretKey,);
 
   }
 
@@ -71,6 +71,15 @@ class Twitter extends ApiAbstract{
     });
 
     return messages;
+  }
+
+
+  Future<String> getUserId() async {
+    String id;
+    Map<String, dynamic> data = await this._api!.verifyCredentials();
+
+    id = data["id_str"];
+    return id;
   }
 
   @override

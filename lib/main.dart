@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:socials/ui/authentication_page/authentication_page.dart';
+import 'package:socials/ui/screens/authentication_page/authentication_page.dart';
 import 'package:socials/utils/models/app_state.dart';
 
 void main() {

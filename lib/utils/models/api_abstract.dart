@@ -5,5 +5,5 @@ abstract class ApiAbstract{
   getMessages();
   sendMessage(String message, dynamic identifier);
   getFriends();
-  login();
+  login(String consumerKey, String consumerSecret);
 }
