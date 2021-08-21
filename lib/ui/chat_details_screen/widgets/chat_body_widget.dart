@@ -35,15 +35,11 @@ class _ChatBodyWidgetState extends State<ChatBodyWidget> {
         );
       },
       itemBuilder: (context, MessageAbstract message){
-        Size size = MediaQuery.of(context).size;
 
-        return ConstrainedBox(
-            constraints: BoxConstraints(
-                maxWidth: size.width * 0.45,
-                minWidth: size.width * 0.2,
-                minHeight: size.height * 0.08
-            ),
-            child: _ChatBubble(message: message.text, received: false));
+        return Align(
+          alignment: true ? Alignment.centerLeft : Alignment.centerRight,
+          child: _ChatBubble(message: message.text, received: false),
+        );
       },
       
 
@@ -72,7 +68,13 @@ class _ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
+      constraints: BoxConstraints(
+          maxWidth: size.width * 0.45,
+          minWidth: size.width * 0.2,
+          minHeight: size.height * 0.08
+      ),
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
         padding: EdgeInsets.all(12),
 

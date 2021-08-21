@@ -39,7 +39,9 @@ class ChatTile extends StatelessWidget {
           maxLines: 3,
         ),
 
-        trailing: _DateWidget(),
+        trailing: _DateWidget(
+          date: thread.last.dateSent
+        ),
       ),
     );
   }
@@ -93,14 +95,18 @@ class _TitleWidget extends StatelessWidget {
 
 
 class _DateWidget extends StatelessWidget {
-  const _DateWidget({Key? key}) : super(key: key);
+  final DateTime date;
+  const _DateWidget({
+    Key? key,
+    required this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Fri"),
-        Text("3:30 PM")
+        Text("${date.day}/${date.month}"),
+        Text("${date.hour}: ${date.minute}")
       ],
     );
   }
