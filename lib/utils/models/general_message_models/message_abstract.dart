@@ -1,11 +1,18 @@
 
 
 abstract class MessageAbstract{
+  String  text;
+  String  id;
+  String  senderId;
+  String  recipientId;
+  DateTime  dateSent;
 
-  String get text;
-  String get id;
-  String get senderId;
-  String get recipientId;
-  DateTime get dateSent;
+  MessageAbstract({
+    required this.text,
+    required this.id,
+    required this.senderId,
+    required this.recipientId,
+    required this.dateSent
+  });
 
 }

@@ -66,11 +66,10 @@ class MessageThread{
   List<MessageAbstract> _getMessagesNewToOld(){
     List<MessageAbstract> _messages = [];
     _Node? current = _first;
-    do{
-      _messages.add(current!.message);
+    while(current != null){
+      _messages.add(current.message);
       current = current.next;
     }
-    while(current!.next != null);
     return _messages;
   }
 
@@ -78,11 +77,10 @@ class MessageThread{
   List<MessageAbstract> _getMessagesOldToNew(){
     List<MessageAbstract> _messages = [];
     _Node? current = _last;
-    do{
-      _messages.add(current!.message);
+    while(current != null){
+      _messages.add(current.message);
       current = current.prev;
     }
-    while(current!.prev != null);
     return _messages;
   }
 }

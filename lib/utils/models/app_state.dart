@@ -7,7 +7,6 @@ import 'package:socials/utils/models/general_message_models/message_list.dart';
 import 'package:socials/utils/models/general_message_models/message_thread.dart';
 import 'package:socials/utils/models/twitter/twitter.dart';
 import 'package:socials/utils/models/platform_keys.dart';
-import 'package:socials/utils/models/twitter/twitter_dm.dart';
 
 class AppState extends ChangeNotifier{
   User? _user;
@@ -59,6 +58,9 @@ class AppState extends ChangeNotifier{
     return null;
 
   }
+
+
+
 
 
   bool _givenAccess(PlatformEnum platform){
