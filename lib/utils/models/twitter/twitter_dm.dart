@@ -30,7 +30,6 @@ class TwitterDM extends MessageAbstract{
 
 
   factory TwitterDM.fromJson(Map<String, dynamic> map){
-    print(map);
     return TwitterDM(
         type: map["type"],
         id: map["id"],

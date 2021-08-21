@@ -3,6 +3,7 @@
 import 'package:socials/utils/APIKEYS.dart';
 import 'package:socials/utils/models/api_abstract.dart';
 import 'package:socials/utils/models/twitter/twitter_dm.dart';
+import 'package:twitter_api/utils/models/TwitterUser.dart';
 import 'package:twitter_api/utils/twitter_api.dart';
 import 'package:twitter_login/twitter_login.dart';
 
@@ -74,12 +75,13 @@ class Twitter extends ApiAbstract{
   }
 
 
-  // Future<void> getFriends()async {
-    // this._api.
-  // }
 
 
 
+  Future<String> getUserById(String id) async {
+    Map<String, dynamic> map = await this._api!.getUserData(id: id);
+    return map["screen_name"];
+  }
 
 
   Future<String> getUserId() async {
