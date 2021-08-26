@@ -3,6 +3,7 @@
 import 'package:socials/utils/APIKEYS.dart';
 import 'package:socials/utils/models/api_abstract.dart';
 import 'package:socials/utils/models/twitter/twitter_dm.dart';
+import 'package:socials/utils/models/twitter/twitter_user.dart';
 import 'package:twitter_api/utils/models/TwitterUser.dart';
 import 'package:twitter_api/utils/twitter_api.dart';
 import 'package:twitter_login/twitter_login.dart';
@@ -58,8 +59,18 @@ class Twitter extends ApiAbstract{
   }
 
   @override
-  Future<dynamic> getFriends() async{
-    return await this._api!.getFollowers();
+  Future<List<TwitterAccount>> getFriends() async{
+    List<Map<String,dynamic>> map =  await this._api!.getFollowers(
+      userId: this.userId,
+          count: 200
+    );
+
+    List<TwitterAccount> users = [];
+    map.forEach((element) {
+      users.add(TwitterAccount.fromJson(element));
+    });
+
+    return users;
   }
 
   @override

@@ -7,6 +7,8 @@ import 'package:socials/utils/models/general_message_models/message_list.dart';
 import 'package:socials/utils/models/general_message_models/message_thread.dart';
 import 'package:socials/utils/models/twitter/twitter.dart';
 import 'package:socials/utils/models/platform_keys.dart';
+import 'package:socials/utils/models/twitter/twitter_user.dart';
+import 'package:socials/utils/models/user_abstract.dart';
 
 class AppState extends ChangeNotifier{
   User? _user;
@@ -58,6 +60,13 @@ class AppState extends ChangeNotifier{
     return null;
 
   }
+
+
+
+  Future<List<TwitterAccount>> get twitterFriends async {
+    return this.twitter!.getFriends();
+
+}
 
 
 
