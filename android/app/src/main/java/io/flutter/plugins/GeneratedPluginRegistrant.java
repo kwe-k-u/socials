@@ -16,7 +16,10 @@ public final class GeneratedPluginRegistrant {
     flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.auth.FlutterFirebaseAuthPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.core.FlutterFirebaseCorePlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.database.FirebaseDatabasePlugin());
+<<<<<<< HEAD
     flutterEngine.getPlugins().add(new com.maru.twitter_login.TwitterLoginPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.urllauncher.UrlLauncherPlugin());
+=======
+>>>>>>> a1a7bb8b7286ccdf26541b2fce357942227f0b7e
   }
 }
