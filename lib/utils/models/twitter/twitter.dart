@@ -103,9 +103,13 @@ class Twitter extends ApiAbstract{
   }
 
   @override
-  void sendMessage(String message, identifier) {
-    // TODO: implement sendMessage
-  }
+  Future<void> sendMessage(String message, identifier) async{
+   var res =  await this._api!.sendMessage(recipientId: identifier, message: message);
+
+   print("body ${res.body}");
+   print("statusCode ${res.statusCode}");
+   print("header ${res.headers}");
+   print("reason ${res.reasonPhrase}");  }
 
 
 

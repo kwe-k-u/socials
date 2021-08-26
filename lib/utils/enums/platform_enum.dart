@@ -3,4 +3,4 @@ enum PlatformEnum{
   snapchat,
   instagram,
   twitter
-}
+}//todo add telegram
