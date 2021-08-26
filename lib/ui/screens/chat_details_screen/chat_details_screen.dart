@@ -19,8 +19,6 @@ class ChatDetailsScreen extends StatefulWidget {
 }
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
-  TextEditingController messageController = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -48,19 +46,9 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Kwame Okran",
-                        style: TextStyle(
-                            fontSize: 16 ,
-                            fontWeight: FontWeight.w600
-                        ),
-                      ),//todo replace with recipient name
+                      Text("Kwame Okran",style: TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),),
                       SizedBox(height: 6,),
-
-                      Text(widget.thread.tag.toString().split(".")[1],
-                        style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 13),
-                      ),
+                      Text(widget.thread.tag.toString().split(".")[1],style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
                     ],
                   ),
                 ),
@@ -96,14 +84,12 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                     },
                   ),
                   Flexible(
-                    child: ChatTextField(
-                      controller: messageController,
-                    ),
+                    child: ChatTextField(),
                   ),
                   IconButton(
                     icon: Icon(Icons.send),
                     onPressed: (){
-                      _sendMessage(widget.thread.tag);
+
                     },
                   )
                 ],
@@ -115,32 +101,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
     );
   }
 
-
-
-  Future<void> _sendMessage(PlatformEnum platform)async{
-    String senderId = getPlatformId(platform);
-
-    switch (platform){
-
-      case PlatformEnum.facebook:
-        // TODO: Handle this case.
-        break;
-      case PlatformEnum.snapchat:
-        // TODO: Handle this case.
-        break;
-      case PlatformEnum.instagram:
-        // TODO: Handle this case.
-        break;
-      case PlatformEnum.twitter:
-        context.read<AppState>().twitter!
-            .sendMessage(messageController.text,
-            widget.thread.first.recipientId == senderId ?
-            widget.thread.first.senderId : widget.thread.first.recipientId
-        );
-        break;
-    }
-
-  }
 
 
   String getPlatformId(PlatformEnum platform){
@@ -155,12 +115,6 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
       case PlatformEnum.twitter:
         return context.read<AppState>().twitter!.userId!;
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    messageController.dispose();
   }
 }
 

@@ -7,7 +7,6 @@ import 'package:socials/utils/enums/platform_enum.dart';
 import 'package:socials/utils/models/app_state.dart';
 import 'package:provider/provider.dart';
 import 'package:socials/utils/models/general_message_models/message_thread.dart';
-import 'package:socials/utils/models/twitter/twitter_user.dart';
 import 'package:socials/utils/models/user_abstract.dart';
 
 class FriendsListPage extends StatefulWidget {
@@ -18,28 +17,6 @@ class FriendsListPage extends StatefulWidget {
 }
 
 class _FriendsListPageState extends State<FriendsListPage> {
-
-  PlatformEnum _checkFriendType(UserAbstract friend){
-
-    switch (friend.runtimeType){
-      // case PlatformEnum.facebook:
-      //   // TODO: Handle this case.
-      //   break;
-      // case PlatformEnum.snapchat:
-      //   // TODO: Handle this case.
-      //   break;
-      // case PlatformEnum.instagram:
-        // TODO: Handle this case.
-        // break;
-      case TwitterAccount:
-        return PlatformEnum.twitter;
-    }
-
-    return PlatformEnum.twitter;
-
-  }
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -88,7 +65,7 @@ class _FriendsListPageState extends State<FriendsListPage> {
                                     MaterialPageRoute(builder: (context)=> ChatDetailsScreen(
                                         thread: MessageThread(
                                             list: [],//todo function in appstate to find if messages exist with the ids
-                                            tag: _checkFriendType(snapshot.data!.elementAt(index))
+                                            tag: PlatformEnum.twitter//todo function to check platform from friend type
                                         )
                                     )
                                     )
