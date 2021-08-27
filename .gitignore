@@ -6,6 +6,8 @@
 .DS_Store
 .atom/
 .buildlog/
+android/.gradle/
+android/e
 .history
 .svn/
 .fvm/
